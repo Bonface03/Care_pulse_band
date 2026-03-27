@@ -1,0 +1,1208 @@
+/* ==================== BACKGROUND SLIDESHOW ==================== */
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: slideshow 32s infinite;
+    /* Changed from 24s to 32s for 4 images */
+}
+
+/* Image 1 - Surgical Room */
+.background-image:nth-child(1) {
+    background-image: url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    animation-delay: 0s;
+}
+
+/* Image 2 - Medical Technology */
+.background-image:nth-child(2) {
+    background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    animation-delay: 8s;
+}
+
+/* Image 3 - Hospital (REPLACED WITH WORKING URL) */
+.background-image:nth-child(3) {
+    background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    animation-delay: 16s;
+}
+
+/* Image 4 - Medical Equipment */
+.background-image:nth-child(4) {
+    background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    animation-delay: 24s;
+}
+
+/* Improved slideshow animation - smoother transitions */
+@keyframes slideshow {
+    0% {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    5% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    25% {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}
+
+/* ==================== RESET & BASE ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== LOGIN PAGE ==================== */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header i {
+    font-size: 3rem;
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+.login-header h2 {
+    font-size: 1.75rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: white;
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-button:hover {
+    background: #1d4ed8;
+}
+
+.login-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.login-footer p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-footer i {
+    color: #2563eb;
+}
+
+/* ==================== HEADER ==================== */
+.main-header {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* ==================== NAVIGATION ==================== */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: rgba(241, 245, 249, 0.8);
+    color: #2563eb;
+}
+
+.nav-link.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+}
+
+.logout-link {
+    color: #ef4444 !important;
+}
+
+.logout-link:hover {
+    background-color: rgba(254, 226, 226, 0.8) !important;
+    color: #dc2626 !important;
+}
+
+/* ==================== SEARCH BAR ==================== */
+.search-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
+}
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    padding: 14px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: white;
+}
+
+.search-btn {
+    padding: 14px 28px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    background: #1d4ed8;
+}
+
+/* ==================== DIVIDER ==================== */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+    margin: 30px 0;
+}
+
+/* ==================== CARDS ==================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card h2 i {
+    color: #2563eb;
+}
+
+.card-body {
+    flex: 1;
+    margin-bottom: 25px;
+}
+
+.card-footer {
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-text {
+    color: #475569;
+    margin-bottom: 15px;
+}
+
+#welcomeMessage {
+    font-size: 1.25rem;
+    color: #2563eb;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.status-indicator {
+    background: rgba(220, 252, 231, 0.9);
+    color: #16a34a;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.last-updated {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* ==================== ABOUT CARD ==================== */
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.feature-tag {
+    background: rgba(224, 242, 254, 0.9);
+    color: #0369a1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== PRODUCTS CARD ==================== */
+.products-list {
+    list-style: none;
+}
+
+.products-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+}
+
+.products-list li:last-child {
+    border-bottom: none;
+}
+
+.products-list li strong {
+    color: #1e293b;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.products-list li p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* ==================== CONTACT CARD ==================== */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    background: rgba(248, 250, 252, 0.9);
+}
+
+.contact-item:hover {
+    background: rgba(241, 245, 249, 0.9);
+}
+
+.contact-item i {
+    color: #2563eb;
+    font-size: 1.5rem;
+    margin-top: 3px;
+}
+
+.contact-label {
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-detail {
+    color: #475569;
+    font-size: 1rem;
+}
+
+/* ==================== LIVESTREAM CARD - UPDATED ==================== */
+.stream-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.stream-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stream-btn.start {
+    background: #10b981;
+    color: white;
+}
+
+.stream-btn.start:hover:not(:disabled) {
+    background: #0da271;
+}
+
+.stream-btn.stop {
+    background: #ef4444;
+    color: white;
+}
+
+.stream-btn.stop:hover:not(:disabled) {
+    background: #dc2626;
+}
+
+.stream-btn.capture {
+    background: #ffc107;
+    color: #212529;
+}
+
+.stream-btn.capture:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+.stream-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Stream Controls Panel */
+.stream-controls-panel {
+    background: rgba(248, 250, 252, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
+}
+
+.quality-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.quality-controls label {
+    font-weight: 600;
+    color: #475569;
+    font-size: 14px;
+}
+
+.quality-controls select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #1e293b;
+    min-width: 150px;
+    font-size: 14px;
+}
+
+.stream-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+#connectionStatus {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.status-online {
+    color: #10b981;
+    animation: pulse 2s infinite;
+}
+
+.status-offline {
+    color: #ef4444;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#streamStats {
+    font-family: 'Courier New', monospace;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #475569;
+}
+
+/* Stream Container */
+.stream-container {
+    position: relative;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stream-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    color: white;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.stream-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    background: rgba(241, 245, 249, 0.9);
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    margin: 20px;
+    width: calc(100% - 40px);
+}
+
+.stream-placeholder i {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #94a3b8;
+    opacity: 0.5;
+}
+
+.stream-placeholder h3 {
+    margin-bottom: 10px;
+    color: #475569;
+    font-size: 1.5rem;
+}
+
+.stream-placeholder p {
+    margin-bottom: 20px;
+    color: #64748b;
+}
+
+.ip-input-container {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#esp32IP {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.ip-btn {
+    padding: 12px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.ip-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Stream Display */
+.stream-display {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#cameraStream {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    background: #000;
+}
+
+.stream-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+#liveIndicator {
+    background: rgba(220, 53, 69, 0.8);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(5px);
+}
+
+#liveIndicator i {
+    font-size: 8px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+#resolutionIndicator {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    backdrop-filter: blur(5px);
+}
+
+/* Photo Preview */
+.photo-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.photo-preview h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+#capturedPhoto {
+    max-width: 90%;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #000;
+}
+
+.photo-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.photo-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.photo-btn:nth-child(1) {
+    background: #2563eb;
+    color: white;
+}
+
+.photo-btn:nth-child(1):hover {
+    background: #1d4ed8;
+}
+
+.photo-btn:nth-child(2) {
+    background: #6c757d;
+    color: white;
+}
+
+.photo-btn:nth-child(2):hover {
+    background: #545b62;
+}
+
+/* Device Info */
+.device-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #64748b;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.device-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==================== ADMIN CONTROLS CARD ==================== */
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.control-btn {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.control-btn.led {
+    background: rgba(254, 243, 199, 0.9);
+    color: #d97706;
+    border: 2px solid #fbbf24;
+}
+
+.control-btn.led:hover {
+    background: rgba(253, 230, 138, 0.9);
+}
+
+.control-btn.reboot {
+    background: rgba(219, 234, 254, 0.9);
+    color: #1d4ed8;
+    border: 2px solid #3b82f6;
+}
+
+.control-btn.reboot:hover {
+    background: rgba(191, 219, 254, 0.9);
+}
+
+.control-btn.calibrate {
+    background: rgba(224, 242, 254, 0.9);
+    color: #0369a1;
+    border: 2px solid #0ea5e9;
+}
+
+.control-btn.calibrate:hover {
+    background: rgba(186, 230, 253, 0.9);
+}
+
+/* ==================== NOTIFICATIONS ==================== */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(150%);
+    transition: transform 0.3s ease-out;
+    z-index: 1000;
+    max-width: 350px;
+    border-left: 4px solid;
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-success {
+    border-left-color: #10b981;
+}
+
+.notification-error {
+    border-left-color: #ef4444;
+}
+
+.notification-info {
+    border-left-color: #3b82f6;
+}
+
+.notification i {
+    font-size: 18px;
+}
+
+.notification-success i {
+    color: #10b981;
+}
+
+.notification-error i {
+    color: #ef4444;
+}
+
+.notification-info i {
+    color: #3b82f6;
+}
+
+/* ==================== WHATSAPP FLOATING BUTTON ==================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float i {
+    margin-top: 2px;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Optional: Add tooltip on hover */
+.whatsapp-float::after {
+    content: 'Chat with us on WhatsApp';
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.whatsapp-float:hover::after {
+    opacity: 1;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .whatsapp-float::after {
+        content: 'WhatsApp';
+        right: 60px;
+        font-size: 12px;
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .main-header {
+        padding: 25px 20px;
+    }
+
+    .main-header h1 {
+        font-size: 2rem;
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+
+    .nav-link {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-input,
+    .search-btn {
+        width: 100%;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 25px 20px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .stream-controls {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    /* Mobile adjustments for streaming */
+    .quality-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quality-controls select {
+        width: 100%;
+    }
+
+    .stream-status {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .device-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .ip-input-container {
+        flex-direction: column;
+    }
+
+    .ip-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .stream-controls-panel {
+        padding: 15px;
+    }
+
+    .stream-placeholder {
+        margin: 10px;
+        width: calc(100% - 20px);
+        padding: 30px 15px;
+    }
+
+    .stream-controls {
+        justify-content: center;
+    }
+}
