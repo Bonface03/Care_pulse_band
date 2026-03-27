@@ -23,7 +23,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     const connectWs = () => {
-      ws.current = new WebSocket('ws://localhost:8000/ws/telemetry');
+      const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/ws/telemetry';
+      ws.current = new WebSocket(wsUrl);
 
       ws.current.onopen = () => {
         setConnected(true);
