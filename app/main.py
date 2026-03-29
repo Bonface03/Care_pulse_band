@@ -14,8 +14,8 @@ app = FastAPI(title="CarePulse Backend API")
 # Setup CORS for the Next.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "*"], # Allow frontend
-    allow_credentials=True,
+    allow_origins=["*"], # Allow all origins
+    allow_credentials=False, # Cannot be True when allow_origins=["*"]
     allow_methods=["*"],
     allow_headers=["*"],
 )
