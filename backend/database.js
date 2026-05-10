@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+// sqlite3 required dynamically later if not using Postgres
 const { Pool } = require('pg');
 const path = require('path');
 
@@ -69,6 +69,7 @@ if (isPostgres) {
     .catch(err => console.error('Error creating PG tables', err));
 
 } else {
+  const sqlite3 = require('sqlite3').verbose();
   const dbPath = path.resolve(__dirname, 'carepulse.db');
   db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
