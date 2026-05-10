@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarePulse - Secure Health Monitoring Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Authentication Screen -->
+      <div id="auth-screen" class="screen active">
+        <div class="auth-container">
+          <div class="logo-container">
+            <h1 class="logo-text">CarePulse</h1>
+            <p class="logo-subtitle">Secure Health Monitoring Portal</p>
+          </div>
+          
+          <div class="auth-card">
+            <div class="auth-tabs">
+              <button class="tab-btn active" id="tab-login">LOG IN</button>
+              <button class="tab-btn" id="tab-register">REGISTER</button>
+            </div>
+            
+            <form id="auth-form">
+              <div class="input-group">
+                <label for="username">USERNAME</label>
+                <div class="input-wrapper">
+                  <i class="ri-user-line icon"></i>
+                  <input type="text" id="username" placeholder="Enter your username" required autocomplete="username">
+                </div>
+              </div>
+              
+              <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <div class="input-wrapper">
+                  <i class="ri-lock-line icon"></i>
+                  <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
+                </div>
+              </div>
+              
+              <button type="submit" class="submit-btn" id="auth-submit">
+                SECURE LOGIN <i class="ri-arrow-right-line"></i>
+              </button>
+              
+              <p id="auth-error" class="error-text"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Screen -->
+      <div id="dashboard-screen" class="screen">
+        <nav class="dashboard-nav">
+          <h2 class="logo-text-small">CarePulse</h2>
+          <button id="logout-btn" class="logout-btn">Logout <i class="ri-logout-box-line"></i></button>
+        </nav>
+        
+        <main class="dashboard-content">
+          <div class="vitals-grid">
+            <!-- SpO2 Card -->
+            <div class="vital-card spo2-card">
+              <div class="vital-header">
+                <h3>SpO2</h3>
+                <i class="ri-lungs-line vital-icon"></i>
+              </div>
+              <div class="vital-value">
+                <span id="spo2-value">--</span>
+                <span class="unit">%</span>
+              </div>
+              <p class="vital-status" id="spo2-status">Waiting for data...</p>
+            </div>
+            
+            <!-- Heart Rate Card -->
+            <div class="vital-card hr-card">
+              <div class="vital-header">
+                <h3>Heart Rate</h3>
+                <i class="ri-heart-pulse-line vital-icon"></i>
+              </div>
+              <div class="vital-value">
+                <span id="hr-value">--</span>
+                <span class="unit">bpm</span>
+              </div>
+              <p class="vital-status" id="hr-status">Waiting for data...</p>
+            </div>
+            
+            <!-- Blood Glucose Card -->
+            <div class="vital-card bg-card">
+              <div class="vital-header">
+                <h3>Blood Glucose</h3>
+                <i class="ri-drop-line vital-icon"></i>
+              </div>
+              <div class="vital-value">
+                <span id="bg-value">--</span>
+                <span class="unit">mg/dL</span>
+              </div>
+              <p class="vital-status" id="bg-status">Waiting for data...</p>
+            </div>
+          </div>
+          
+          <div class="charts-container">
+            <div class="chart-card">
+              <h3>Live Vitals Stream</h3>
+              <canvas id="vitalsChart"></canvas>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
