@@ -106,8 +106,11 @@ io.on('connection', (socket) => {
 });
 
 // --- Catch-all Route for Frontend ---
-// This must be the last route. It ensures that any client-side routing works.
-app.get('*', (req, res) => {
+// This ensures client-side routing works, but returns JSON 404 for missing API routes.
+app.use((req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'API endpoint not found' });
+  }
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
