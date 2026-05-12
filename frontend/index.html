@@ -98,17 +98,63 @@
               </div>
               <p class="vital-status" id="bg-status">Waiting for data...</p>
             </div>
+            
+            <!-- Fall Detection Card -->
+            <div class="vital-card fall-card">
+              <div class="vital-header">
+                <h3>Fall Detection</h3>
+                <i class="ri-walk-line vital-icon"></i>
+              </div>
+              <div class="vital-value">
+                <span id="fall-value">--</span>
+              </div>
+              <p class="vital-status" id="fall-status">Waiting for data...</p>
+            </div>
           </div>
           
           <div class="charts-container">
             <div class="chart-card">
               <h3>Live Vitals Stream</h3>
-              <canvas id="vitalsChart"></canvas>
+              <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="vitalsChart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="history-container">
+            <div class="history-card">
+              <div class="history-header">
+                <h3>Previous Readings</h3>
+                <button id="refresh-history-btn" class="action-btn"><i class="ri-refresh-line"></i> Refresh</button>
+              </div>
+              <div class="table-responsive">
+                <table id="history-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>SpO2 (%)</th>
+                      <th>HR (bpm)</th>
+                      <th>BG (mg/dL)</th>
+                      <th>Fall Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="history-body">
+                    <tr>
+                      <td colspan="5" style="text-align: center;">Loading data...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </main>
       </div>
     </div>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn" id="whatsapp-btn">
+      <i class="ri-whatsapp-line"></i>
+    </a>
     
     <script type="module" src="/src/main.js"></script>
   </body>

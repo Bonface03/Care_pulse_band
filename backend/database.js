@@ -39,6 +39,21 @@ const dbWrapper = {
         });
       });
     }
+  },
+  all: async (sql, params = []) => {
+    if (isPostgres) {
+      let i = 1;
+      const pgSql = sql.replace(/\?/g, () => `$${i++}`);
+      const res = await pool.query(pgSql, params);
+      return res.rows;
+    } else {
+      return new Promise((resolve, reject) => {
+        db.all(sql, params, (err, rows) => {
+          if (err) reject(err);
+          else resolve(rows);
+        });
+      });
+    }
   }
 };
 
@@ -63,10 +78,14 @@ if (isPostgres) {
       spo2 REAL,
       heart_rate REAL,
       blood_glucose REAL,
+      fall_status VARCHAR(50),
       timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
-  `).then(() => console.log('PostgreSQL tables verified'))
-    .catch(err => console.error('Error creating PG tables', err));
+  `).then(() => {
+      console.log('PostgreSQL tables verified');
+      // Attempt to add column if it doesn't exist
+      return pool.query('ALTER TABLE sensor_data ADD COLUMN fall_status VARCHAR(50);').catch(() => {});
+  }).catch(err => console.error('Error creating PG tables', err));
 
 } else {
   const sqlite3 = require('sqlite3').verbose();
@@ -91,9 +110,15 @@ if (isPostgres) {
         spo2 REAL,
         heart_rate REAL,
         blood_glucose REAL,
+        fall_status TEXT,
         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users (id)
-      )`);
+      )`, () => {
+        // Attempt to add column if it doesn't exist
+        db.run('ALTER TABLE sensor_data ADD COLUMN fall_status TEXT', (err) => {
+          // Ignore error if column already exists
+        });
+      });
     }
   });
 }

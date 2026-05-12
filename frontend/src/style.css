@@ -323,6 +323,7 @@ body {
 .spo2-card .vital-icon { color: #00d2ff; }
 .hr-card .vital-icon { color: #ff4b4b; }
 .bg-card .vital-icon { color: #ffd700; }
+.fall-card .vital-icon { color: #ff8c00; }
 
 .vital-value {
   font-size: 3.5rem;
@@ -362,7 +363,103 @@ body {
   font-weight: 600;
 }
 
+/* History Container */
+.history-container {
+  width: 100%;
+}
+
+.history-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.history-header h3 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-secondary);
+}
+
+#history-table th {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+#history-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#history-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  z-index: 1000;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+}
+
 @media (max-width: 768px) {
   .dashboard-content { padding: 1.5rem; }
   .dashboard-nav { padding: 1rem 1.5rem; }
+  .whatsapp-btn { bottom: 1rem; right: 1rem; width: 50px; height: 50px; font-size: 1.5rem; }
 }

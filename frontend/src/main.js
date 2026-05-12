@@ -24,9 +24,13 @@ const logoutBtn = document.getElementById('logout-btn')
 const spo2Value = document.getElementById('spo2-value')
 const hrValue = document.getElementById('hr-value')
 const bgValue = document.getElementById('bg-value')
+const fallValue = document.getElementById('fall-value')
 const spo2Status = document.getElementById('spo2-status')
 const hrStatus = document.getElementById('hr-status')
 const bgStatus = document.getElementById('bg-status')
+const fallStatus = document.getElementById('fall-status')
+const refreshHistoryBtn = document.getElementById('refresh-history-btn')
+const historyBody = document.getElementById('history-body')
 
 const IS_DEV = window.location.hostname === 'localhost' && window.location.port === '5173';
 const API_BASE = IS_DEV ? 'http://localhost:3000' : window.location.origin;
@@ -53,6 +57,7 @@ function showDashboard() {
   dashboardScreen.classList.add('active')
   initChart()
   connectSocket()
+  fetchHistory()
 }
 
 // --- Auth Logic ---
@@ -133,6 +138,7 @@ function connectSocket() {
     spo2Status.textContent = 'Live'
     hrStatus.textContent = 'Live'
     bgStatus.textContent = 'Live'
+    fallStatus.textContent = 'Live'
   })
   
   socket.on('vitals_update', (data) => {
@@ -152,7 +158,57 @@ function updateVitalsUI(data) {
   if (data.spo2) spo2Value.textContent = data.spo2
   if (data.heart_rate) hrValue.textContent = data.heart_rate
   if (data.blood_glucose) bgValue.textContent = data.blood_glucose
+  if (data.fall_status !== undefined) {
+    fallValue.textContent = data.fall_status
+    if (data.fall_status.toLowerCase() === 'abnormal') {
+      fallValue.style.color = 'var(--error-color)'
+      fallStatus.textContent = 'Alert'
+      fallStatus.style.color = 'var(--error-color)'
+    } else {
+      fallValue.style.color = 'var(--text-primary)'
+      fallStatus.textContent = 'Normal'
+      fallStatus.style.color = 'var(--success-color)'
+    }
+  }
 }
+
+// --- History Logic ---
+async function fetchHistory() {
+  try {
+    historyBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading data...</td></tr>'
+    const res = await fetch(`${API_URL}/data/history`, {
+      headers: { 'Authorization': `Bearer ${authToken}` } // Although not strictly required by backend yet
+    })
+    
+    if (!res.ok) throw new Error('Failed to fetch history')
+    
+    const data = await res.json()
+    
+    if (data.length === 0) {
+      historyBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No history available</td></tr>'
+      return
+    }
+    
+    historyBody.innerHTML = ''
+    data.forEach(row => {
+      const tr = document.createElement('tr')
+      const timeStr = new Date(row.timestamp).toLocaleString()
+      tr.innerHTML = `
+        <td>${timeStr}</td>
+        <td>${row.spo2 || '--'}</td>
+        <td>${row.heart_rate || '--'}</td>
+        <td>${row.blood_glucose || '--'}</td>
+        <td>${row.fall_status || '--'}</td>
+      `
+      historyBody.appendChild(tr)
+    })
+  } catch (err) {
+    console.error('Error fetching history:', err)
+    historyBody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--error-color);">Error loading history</td></tr>'
+  }
+}
+
+refreshHistoryBtn.addEventListener('click', fetchHistory)
 
 // --- Charting ---
 function initChart() {

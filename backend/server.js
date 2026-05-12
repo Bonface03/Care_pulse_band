@@ -71,18 +71,43 @@ app.post('/api/auth/login', async (req, res) => {
 
 // --- ESP32 Data Ingestion API ---
 // This endpoint is for the ESP32 to POST data
-app.post('/api/data/ingest', (req, res) => {
+app.post('/api/data/ingest', async (req, res) => {
   // We can secure this endpoint with a specific device token if needed.
   // For now, we accept data and broadcast it to all connected socket clients.
-  const { spo2, heart_rate, blood_glucose } = req.body;
+  const { spo2, heart_rate, blood_glucose, fall_status } = req.body;
   
   // Note: We might want to associate the data with a user ID in the future if multiple devices
   // are connected to different users. For MVP, we'll store it as user 1 or general.
   
-  // Emit to all connected web clients
-  io.emit('vitals_update', { spo2, heart_rate, blood_glucose, timestamp: new Date() });
-  
-  res.status(200).json({ message: 'Data ingested successfully' });
+  try {
+    const sql = process.env.DATABASE_URL
+      ? 'INSERT INTO sensor_data (spo2, heart_rate, blood_glucose, fall_status) VALUES ($1, $2, $3, $4)'
+      : 'INSERT INTO sensor_data (spo2, heart_rate, blood_glucose, fall_status) VALUES (?, ?, ?, ?)';
+      
+    // The db wrapper handles ? to $ translation automatically for pg
+    await db.run('INSERT INTO sensor_data (spo2, heart_rate, blood_glucose, fall_status) VALUES (?, ?, ?, ?)', 
+      [spo2, heart_rate, blood_glucose, fall_status]);
+      
+    // Emit to all connected web clients
+    io.emit('vitals_update', { spo2, heart_rate, blood_glucose, fall_status, timestamp: new Date() });
+    
+    res.status(200).json({ message: 'Data ingested successfully' });
+  } catch (err) {
+    console.error('Data ingest error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// --- Data History API ---
+app.get('/api/data/history', async (req, res) => {
+  try {
+    // Fetch last 100 readings
+    const data = await db.all('SELECT * FROM sensor_data ORDER BY timestamp DESC LIMIT 100');
+    res.status(200).json(data);
+  } catch (err) {
+    console.error('History fetch error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 // --- Socket.io Real-time Connection ---
